@@ -1,0 +1,170 @@
+<template>
+  <div class="poem-container myCenter my-animation-hideToShow"
+    v-if="!$common.isEmpty(guShi.origin) || !$common.isEmpty(hitokoto.hitokoto)">
+    <!-- 背景图片 -->
+    <el-image class="my-el-image poem-image" style="position: absolute; margin-top: -50px" v-once lazy :src="$constant.random_image + new Date() + Math.floor(Math.random() * 10)
+      " fit="cover">
+      <div slot="error" class="image-slot"></div>
+    </el-image>
+    <div class="poem-wrap">
+      <div v-if="isShehui"><span>鬼畜全明星</span></div>
+      <div v-else>
+        <span>{{ isHitokoto ? hitokoto.from : guShi.origin }}</span>
+      </div>
+      <p class="poem">{{ isHitokoto ? hitokoto.hitokoto : guShi.content }}</p>
+      <p class="info" v-if="
+        !isShehui &&
+        (!isHitokoto || (isHitokoto && !$common.isEmpty(hitokoto.from_who)))
+      ">
+        {{ isHitokoto ? hitokoto.from_who : guShi.author }}
+      </p>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    isHitokoto: {
+      type: Boolean,
+      default: true,
+    },
+    isShehui: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      guShi: {
+        content: "...",
+        origin: "...",
+        author: "...",
+        category: "...",
+      },
+      hitokoto: {
+        hitokoto: "...",
+        from: "...",
+        from_who: "...",
+      },
+    };
+  },
+  created() {
+    // 初始获取诗词数据
+    this.fetchPoemData();
+  },
+
+  mounted() {
+    // 每隔一段时间更新诗词数据(60秒变换一次)
+    setInterval(this.fetchPoemData, 60000);
+  },
+
+  methods: {
+    fetchPoemData() {
+      if (!this.isShehui) {
+        if (this.isHitokoto) {
+          this.getHitokoto();
+        } else {
+          this.getGuShi();
+        }
+      } else {
+        this.hitokoto.from = "";
+        this.hitokoto.from_who = "";
+        this.sendShehui();
+      }
+    },
+    sendShehui() {
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.open("get", this.$constant.shehui);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          let shehui = xhr.responseText;
+          that.hitokoto.hitokoto = shehui.substring(1, shehui.length - 1);
+        }
+      };
+      xhr.send();
+    },
+    getGuShi() {
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.open("get", this.$constant.jinrishici);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          that.guShi = JSON.parse(xhr.responseText);
+        }
+      };
+      xhr.send();
+    },
+    getHitokoto() {
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.open("get", this.$constant.hitokoto);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          that.hitokoto = JSON.parse(xhr.responseText);
+        }
+      };
+      xhr.send();
+    },
+  },
+};
+</script>
+<style scoped>
+.poem-container {
+  padding: 90px 0 40px;
+  position: relative;
+}
+
+/* 以my-animation-开头的class */
+[class*="my-animation-"] {
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.my-animation-hideToShow {
+  animation-name: hideToShow;
+}
+
+/* 遮罩 */
+.poem-image::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  content: "";
+}
+
+.poem-wrap {
+  border-radius: 10px;
+  z-index: 10;
+  text-align: center;
+  letter-spacing: 4px;
+  font-weight: 300;
+  width: 100%;
+  max-width: 800px;
+}
+
+.poem-wrap div span {
+  padding: 5px 10px;
+  color: white;
+  font-size: 2em;
+  border-radius: 5px;
+}
+
+.poem-wrap p {
+  width: 100%;
+  max-width: 800px;
+  color: white;
+}
+
+.poem-wrap p.poem {
+  margin: 40px auto;
+  font-size: 1.5em;
+}
+
+.poem-wrap p.info {
+  margin: 20px auto 40px;
+  font-size: 1.1em;
+}
+</style>

@@ -1,0 +1,7 @@
+/* ZhuZiAWan-2字体 筑紫A丸 */
+@font-face{
+    font-family: "ZhuZiAWan";
+    src: url("./ZhuZiAWan-2.ttc");
+    font-weight: normal;
+    font-style: normal;
+}

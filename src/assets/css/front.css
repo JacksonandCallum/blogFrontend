@@ -1,0 +1,211 @@
+body {
+  /* background-color: #e4e6eb; */
+}
+
+/*页面具体样式自定义*/
+.main-content {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.front-notice {
+  padding: 5px 20px;
+  color: #666;
+  font-size: 12px;
+  background-color: #fff;
+}
+.front-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid transparent;
+  background-color: #f7f9fe;
+}
+
+.front-header-left {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+.front-header-left img,
+.front-header-dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.front-header-left .title {
+  flex: 1;
+  color: #355476;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.front-header-left .title:hover {
+  color: white !important;
+}
+
+.front-header-center {
+  /* flex: 1; */
+}
+
+.el-menu--horizontal > .el-menu-item.is-active {
+  border-bottom: none;
+}
+
+.front-header-center .active {
+  cursor: pointer;
+}
+
+.front-header-center .active span {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.front-header-center .active:hover span {
+  color: #409eff;
+}
+
+.el-dropdown-menu__item:hover {
+  background-color: transparent;
+  color: #409eff;
+}
+
+.front-header-center .active::after {
+  /* 定义了伪元素的内容为空字符串，不显示任何实际内容，会生成一个虚拟的元素。 */
+  content: "";
+  /* 让伪元素脱离文档流，并且相对于最近的具有定位属性的父元素进行定位 */
+  position: absolute;
+  /* 将伪元素定位在其父元素的左下角 */
+  left: 0;
+  bottom: 0;
+  /* 定义了伪元素的宽度为其父元素的 100%，高度为 3 像素 */
+  width: 100%;
+  height: 5px;
+  /* 将横线的颜色设置为透明（一开始我们不希望它显示出来） */
+  background-color: transparent;
+  transition: all 0.03ms ease-in-out;
+}
+
+.front-header-center .active:hover::after {
+  background-color: #409eff;
+  animation: moveLine 1s ease-in-out forwards;
+}
+
+@keyframes moveLine {
+  0% {
+    opacity: 0;
+    width: 0%;
+  }
+  50% {
+    opacity: 1;
+    width: 100%;
+  }
+  /* 100% {
+      width: 0%;
+    } */
+}
+
+.front-header-center .active li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.front-header-right {
+  width: 200px;
+  padding-right: 20px;
+  text-align: right;
+  margin-top: 10px;
+}
+.front-header-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.front-header-dropdown .img:hover {
+  transform: rotate(360deg);
+  cursor: pointer;
+}
+
+.img {
+  transition: all 0.6s;
+  cursor: poiter;
+}
+
+.user-avatar {
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.user-avatar:hover {
+  transform: rotate(360deg);
+}
+
+.el-dropdown-menu {
+  width: 110px !important;
+  /* text-align: center !important; */
+}
+
+/* .el-dropdown-menu li:hover{
+    background-color: white;
+    color: #409eff;
+} */
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(73, 177, 245, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #49b1f5;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    transparent 75%,
+    transparent
+  );
+  border-radius: 1em;
+}
+
+.el-select-dropdown.el-popper ::-webkit-scrollbar {
+  display: none;
+}
+
+/* ElementUI 样式覆盖 */
+.el-menu.el-menu--horizontal {
+  border: none !important;
+  height: 59px;
+  background-color: unset;
+}
+
+.el-tabs__header {
+  width: 780px;
+}
+
+/**解决使用vue2-lay-render后图片在移动端展示时过大*/
+.image-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* .el-menu.el-menu--horizontal:hover{
+    background-color: rgba(0, 34, 77, 0.05);
+} */

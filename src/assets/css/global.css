@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 20px;
+  font-family: ZhuZiAWan;
+  /* overflow: auto; */
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.card {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.my-el-image {
+  width: 100%;
+  height: 100%;
+}
+
+.my-el-image .image-slot {
+  width: 100%;
+  height: 100%;
+}
+
+/* 居中 */
+.myCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-e-text {
+  width: 100% !important;
+}
+
+.w-e-text img {
+  max-width: 100%; /* 图片最大宽度为父元素宽度 */
+  max-height: 100%; /* 图片最大高度为父元素高度 */
+}
+
+/* macOS 风格的代码块样式 */
+.mac-code-block {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  color: #333;
+  /* 横向滚动条 */
+  overflow-x: auto;
+  /* 保留换行符 */
+  white-space: pre-wrap;
+}
+
+/* 使表单表头对应列与列的内容居中对齐 */
+.el-table .cell {
+  text-align: center;
+}
+
+.el-tooltip__popper.is-light {
+  background: #39c5bb !important;
+  border-radius: 10px;
+  color: white;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  border: unset !important;
+}
+
+.el-tooltip__popper .popper__arrow {
+  border-style: unset !important;
+}
+
+/* 移动端导航栏 */
+.toolbarDrawer {
+  position: relative;
+  background: url("@/assets/imgs/bg.png") center center / cover no-repeat;
+  letter-spacing: 3px;
+}
+
+.toolbarDrawer .el-drawer__header {
+  font-size: 22px;
+  color: white;
+  text-align: center !important;
+  position: relative;
+}
+
+.toolbarDrawer::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  content: "";
+}
+
+@media screen and (max-width: 800px) {
+  .el-dialog {
+    width: 70% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .el-dialog {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .el-dialog {
+    width: 90% !important;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .el-message-box {
+    width: 70% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .el-message-box {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .el-message-box {
+    width: 90% !important;
+  }
+}
+
+/* .el-button:focus { outline: none; } */

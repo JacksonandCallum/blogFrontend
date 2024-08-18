@@ -1,0 +1,19 @@
+:root{
+    /* 背景 */
+    --background: white;
+    --favoriteBg: #f7f9fe;
+
+    /* 字体 */
+    --fontColor: black;
+    /* 边框 */
+    --borderColor: rgba(0, 0, 0, 0.5);
+    /* 边框 */
+    --borderHoverColor: rgba(110, 110, 110, 0.4);
+    /* 文章字体 */
+    --articleFontColor: #1f1f1f;
+    /* 文章灰色字体 */
+    --articleGreyFontColor: #616161;
+    /* 评论背景颜色 */
+    --commentContent: #F7F9FE;
+    
+}
